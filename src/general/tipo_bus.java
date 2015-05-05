@@ -1,9 +1,14 @@
 package general;
 
+import java.sql.SQLException;
+
+import java.sql.ResultSet;
+
 public class tipo_bus {
 //ATRIBUTOS
 	int id_tipobus=0;
-	String tipo_bus;
+	String tipobus;
+	Conectadb cbd= new Conectadb();
 //PROPIEDADES
 	public int getIDTipBus(){
 		return id_tipobus;
@@ -12,20 +17,52 @@ public class tipo_bus {
 		id_tipobus=id;
 	}
 	public String getTBus(){
-		return tipo_bus;
+		return tipobus;
 	}
 	public void setTBus(String tb){
-		tipo_bus=tb;
+		tipobus=tb;
 	}
 //CONSTRUCTOR
 	public tipo_bus(){}
 //METODOS
-	public static String ListarTipoBus(String n){
-		String lista = null;
-		return lista;
+	public ResultSet ListarTipoBus(String TIB){
+		ResultSet rs = null;
+		try{
+			cbd.conectar();
+			  rs =cbd.consulta("SELECT * FROM tipo_bus");
+			  
+			 while(rs.next()){
+				 System.out.println (rs.getInt ("idtipo_bus") + " " + rs.getString ("tipo_bus"));
+			 }
+			 return rs;
+		}catch(SQLException ex){
+			 return rs;
+		}
 	};
-	public static String BuscarTipoBus(String n){
-		String lista = null;
-		return lista;
+	
+	public ResultSet BuscarTipoBus(String id){
+		ResultSet rs = null;
+		try{
+			cbd.conectar();
+			  rs = cbd.consulta("SELECT * FROM tipo_bus WHERE idtipo_bus = "+id+";");
+			 return rs;
+		}catch(SQLException ex){
+			return rs;
+		}
+		
 	};
+	
+	public boolean Ingresar(String tipo_bus){
+		
+		String consulta="INSERT INTO tipo_bus (tipo_bus) VALUES('" + tipo_bus + "');";
+		
+		try{
+			cbd.conectar();
+			cbd.insertar(consulta);
+			return true;
+		}catch(SQLException e){
+			return false;
+		}
+		
+	}
 }
