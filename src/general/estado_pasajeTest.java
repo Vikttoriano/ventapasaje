@@ -1,21 +1,20 @@
 package general;
-import java.sql.ResultSet;
+
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
 
 import org.junit.Test;
 
-public class ciudadTest2 {
+public class estado_pasajeTest {
 
 	@Test
 	public void test() {
-		ciudad c = new ciudad();
-		ResultSet resp =  c.listarCiudad();
+		estado_pasaje ep = new estado_pasaje();
+		ResultSet resp =  ep.listarEstadoPasaje();
 		assertNotNull(resp);
 		
+		
 	}
-	
-	
 
 }

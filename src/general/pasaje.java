@@ -75,39 +75,54 @@ public class pasaje {
 	
 	//Metodos
 	
-	public void crearPasaje(int id, int asiento, Map<Integer,Integer> listaPasaje){
-		listaPasaje.put(id_pasaje, asiento_pasaje);
-	}
-	
-	
-	public void modificarPasaje(int id, int asiento, HashMap<Integer, Integer> listaPasajes){
-		
-		Scanner teclado = new Scanner(System.in);
-		
-		
-		System.out.println("Introduce la id del pasaje");
-		listaPasajes.put(id, teclado.nextInt());
-		
-		System.out.println("Introduce el numero del asiento");
-		listaPasajes.put(asiento, teclado.nextInt());
-	
-		
+	public boolean agregarPasaje(String ciudadO, String ciudadD, String FechaP, int precio, int asiento, int idestadoP, int boleta, String cliente, int idservicio){
+		Conectadb  db = new Conectadb();
+		try {
+		db.conectar();
+		String sql = "INSERT INTO `pasaje` (`idpasaje`, `ciudad_origen`, `ciudad_destino`, fecha_pasaje, `precio_pasaje`, `asiento_pasaje`, `estado_pasaje_idestado_pasaje`, `boleta_idboleta`, `cliente_rut_cliente`, `servicio_idservicio`) VALUES (NULL, '"+ciudadO+"', '"+ciudadD+"', '"+FechaP+"', '"+precio+"', '"+asiento+"', '"+idestadoP+"', '"+boleta+"', '"+cliente+"', '"+idservicio+"') ";
+		//System.out.println(sql);
+		db.insertar(sql);
+		return true;
+		}catch (Exception er){
+			return false;
+		}
 		
 	}
 	
 	
-	
-	
-	
-	
-	
-	public void EliminarPasaje(int pasaje, Map<Integer, Integer> ListaPasaje){
-		if(ListaPasaje.containsKey(pasaje)){
-			ListaPasaje.remove(pasaje);
+	public boolean modificarPasaje(int idpasaje, String ciudadO, String ciudadD, String fechaP, int precio, int asiento, int idestadoP, int boleta, String cliente, int idservicio){
+		Conectadb  db = new Conectadb();
+		
+		try {
+		
+		db.conectar();
+		String sql = "UPDATE `pasaje` SET `ciudad_origen`='"+ciudadO+"' ,`ciudad_destino`='"+ciudadD+"',`fecha_pasaje`='"+fechaP+"',`precio_pasaje`='"+precio+"',`asiento_pasaje`='"+asiento+"',`estado_pasaje_idestado_pasaje`='"+idestadoP+"',`boleta_idboleta`='"+boleta+"',`cliente_rut_cliente`='"+cliente+"',`servicio_idservicio`='"+idservicio+"' where `idpasaje`="+idpasaje+" ";
+		db.actualizar(sql);
+		return true;
+		}catch (Exception er){
+			return false;
 		}
-		else{
-			System.out.println("Error, pasaje no esta registrado");
+	}
+	
+	
+	
+	
+	
+	
+	
+	public boolean EliminarPasaje(){
+		Conectadb  db = new Conectadb();
+		
+		
+		try {
+		db.conectar();
+		String sql = "SELECT * FROM `pasaje`";
+		db.borrar(sql);
+		return true;
+		}catch (Exception er){
+			
 		}
+		return false;
 	}
 	
 	

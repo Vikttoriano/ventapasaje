@@ -60,25 +60,34 @@ public class ciudad {
 		
 	}
 	
-	public boolean listarCiudad(String ciudad){
+	public ResultSet listarCiudad( ){
 		Conectadb db = new Conectadb();
+		 ResultSet rs = null;
+		 
 		try{
-			
 			 db.conectar();
-			 ResultSet rs = db.consulta("SELECT * FROM `ciudad`");
-			 while (rs.next())
-			 {
-				 System.out.println (rs.getInt ("idciudad") + " " + rs.getString ("nombre_ciudad"));
-			 }
-		 return true;
+			  rs = db.consulta("SELECT * FROM `ciudad`");
 		}catch (Exception e1)
         {
-           return false;
+			
         }
-		
-	
-	 
-	
+		 return rs;
 	}	
+	
+	
+	  	public ResultSet BuscarCiudadPorID(int idciudad ){
+		Conectadb db = new Conectadb();
+		 ResultSet rs = null;
+		 
+		try{
+			 db.conectar();
+			  rs = db.consulta("SELECT * FROM `ciudad` where idciudad="+ idciudad +"");
+		}catch (Exception e1)
+        {
+			
+        }
+		 return rs;
+	}	
+	 
 
 }

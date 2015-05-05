@@ -1,4 +1,5 @@
 package general;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -31,6 +32,34 @@ public class estado_pasaje {
 	
 	//Metodos
 	
+	public ResultSet listarEstadoPasaje( ){
+		Conectadb db = new Conectadb();
+		 ResultSet rs = null;
+		 
+		try{
+			 db.conectar();
+			  rs = db.consulta("SELECT * FROM `estado_pasaje`");
+		}catch (Exception e1)
+        {
+			
+        }
+		 return rs;
+	}
+	
+	
+	public ResultSet BuscarEstadoPasajePorID(int idestado_pasaje ){
+		Conectadb db = new Conectadb();
+		 ResultSet rs = null;
+		 
+		try{
+			 db.conectar();
+			  rs = db.consulta("SELECT * FROM `estado_pasaje` where idestado_pasaje="+ idestado_pasaje +"");
+		}catch (Exception e1)
+        {
+			
+        }
+		 return rs;
+	}	
 	
 	
 	
