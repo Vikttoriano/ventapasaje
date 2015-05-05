@@ -1,5 +1,7 @@
 package general;
 
+import java.sql.SQLException;
+
 public class estado_cargo {
 //ATRIBUTOS
 	int id_estado_cargo=0;
@@ -21,11 +23,32 @@ public class estado_cargo {
 	public estado_cargo(){}
 //METODOS
 	public static String ListarECargo(String n){
-		String lista = null;
-		return lista;
+		
 	};
 	public static String BuscarECargo(String n){
 		String lista = null;
 		return lista;
-	};
+	}
+	public boolean insertar_cargo(String estado_cargo){
+		
+		try
+		{
+			Conectadb db = new Conectadb();
+			db.conectar();
+			db.insertar("INSERT INTO `estado_cargo`"
+					+ " (`idestado_cargo`, `estado_cargo`) VALUES "
+					+ "(NULL, '"+estado_cargo+"');");
+			return true;
+		}catch(SQLException e){
+			
+			return false;
+		}
+		
+	}
+		
+		
+		
+		
+		
+	
 }
