@@ -1,6 +1,4 @@
 package general;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -46,20 +44,11 @@ public class ciudad {
 	
 	
 	
-	public boolean agregarCiudad(String ciudad){
-		Conectadb  db = new Conectadb();
-		
-		try {
-		db.conectar();
-		db.insertar("INSERT INTO `ciudad`" + " (`idciudad`, `nombre_ciudad`) VALUES "
-				+ "(NULL, '"+ciudad+"');");
-		return true;
-		}catch (Exception err){
-			return false;
-		}
-		
+	public void agregarCiudad(String ciudad,int id, Map<String, Integer> listaCiudad){
+		listaCiudad.put(nombre_ciudad,id_ciudad);
 	}
 	
+<<<<<<< HEAD
 	public ResultSet listarCiudad( ){
 		Conectadb db = new Conectadb();
 		 ResultSet rs = null;
@@ -89,5 +78,20 @@ public class ciudad {
 		 return rs;
 	}	
 	 
+=======
+	public void listarCiudad(HashMap<String,Integer>ListaCiudad){
+		String nombre;
+		Iterator<String> ciudad=ListaCiudad.keySet().iterator();
+		System.out.println("Lista de Ciudades");
+		while(ciudad.hasNext()){
+			nombre=ciudad.next();
+			System.out.println("Ciudad: "+ nombre + "\nId: " + ListaCiudad.get(nombre));
+			
+		}
+	}
+	
+	
+	
+>>>>>>> parent of c1830c7... pruebaCiudad
 
 }
