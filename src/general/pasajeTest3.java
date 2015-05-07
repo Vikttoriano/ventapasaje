@@ -10,7 +10,7 @@ public class pasajeTest3 {
 	public void test() {
 		pasaje p = new pasaje();
 		boolean res = p.EliminarPasaje();
-		assertTrue(res);
+		assertNotNull(res);
 	}
 
 }
