@@ -9,7 +9,7 @@ public class ciudadTest {
 	 @Test
 	public void test() {
 		ciudad c = new ciudad();
-		boolean resp = c.agregarCiudad("Arica");
+		boolean resp = c.agregarCiudad("Santiago");
 		assertTrue(resp);
 	}  
 	

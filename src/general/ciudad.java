@@ -1,7 +1,9 @@
 package general;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+
+import java.sql.ResultSet;
+
+
+
 public class ciudad {
 
 	//Atributos
@@ -37,61 +39,58 @@ public class ciudad {
 	//Metodos
 	
 	//Buscar Ciudad
-	
-	
-	
-	
-	
-	
-	
-	public void agregarCiudad(String ciudad,int id, Map<String, Integer> listaCiudad){
-		listaCiudad.put(nombre_ciudad,id_ciudad);
+  	public ResultSet BuscarCiudadPorID(int idciudad ){
+	Conectadb db = new Conectadb();
+	 ResultSet rs = null;
+	 
+	try{
+		 db.conectar();
+		  rs = db.consulta("SELECT * FROM `ciudad` where idciudad="+ idciudad +"");
+	}catch (Exception e1)
+    {
+		
+    }
+	 return rs;
+  	}	
+ 
+	//Agregar Ciudad
+  	public boolean agregarCiudad(String ciudad){
+		Conectadb  db = new Conectadb();
+		try {
+		db.conectar();
+		String sql = "INSERT INTO `ciudad`(`idciudad`, `nombre_ciudad`) VALUES (NULL,'"+ciudad+"')";
+		//System.out.println(sql);
+		db.insertar(sql);
+		return true;
+		}catch (Exception er){
+			return false;
+		}
+		
 	}
-	
-<<<<<<< HEAD
+  	
+  	
+  	
+  	
+  	
+  	//Listar Ciudad
 	public ResultSet listarCiudad( ){
 		Conectadb db = new Conectadb();
 		 ResultSet rs = null;
 		 
 		try{
 			 db.conectar();
-			  rs = db.consulta("SELECT * FROM `ciudad`");
-		}catch (Exception e1)
-        {
+			 rs = db.consulta("SELECT * FROM `ciudad`");
+		}catch (Exception e1){
 			
         }
 		 return rs;
-	}	
-	
-	
-	  	public ResultSet BuscarCiudadPorID(int idciudad ){
-		Conectadb db = new Conectadb();
-		 ResultSet rs = null;
-		 
-		try{
-			 db.conectar();
-			  rs = db.consulta("SELECT * FROM `ciudad` where idciudad="+ idciudad +"");
-		}catch (Exception e1)
-        {
-			
-        }
-		 return rs;
-	}	
-	 
-=======
-	public void listarCiudad(HashMap<String,Integer>ListaCiudad){
-		String nombre;
-		Iterator<String> ciudad=ListaCiudad.keySet().iterator();
-		System.out.println("Lista de Ciudades");
-		while(ciudad.hasNext()){
-			nombre=ciudad.next();
-			System.out.println("Ciudad: "+ nombre + "\nId: " + ListaCiudad.get(nombre));
-			
-		}
-	}
+	}		
 	
 	
 	
->>>>>>> parent of c1830c7... pruebaCiudad
+	
+	
+	
+	
 
 }
