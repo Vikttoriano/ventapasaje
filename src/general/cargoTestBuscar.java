@@ -4,13 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class pasajeTest3 {
+public class cargoTestBuscar {
 
 	@Test
 	public void test() {
-		pasaje p = new pasaje();
-		boolean res = p.EliminarPasaje();
-		assertNotNull(res);
+		cargo c = new cargo();
+		boolean resp= c.BuscarCargo(1);
+		assertNotNull(resp);
 	}
 
 }

@@ -1,5 +1,6 @@
 package general;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class estado_cargo {
@@ -22,15 +23,15 @@ public class estado_cargo {
 //CONSTRUCTOR
 	public estado_cargo(){}
 //METODOS
-	public static String ListarECargo(String n){
-		
+	public ResultSet ListarECargo(String n){
+		ResultSet rs=null;
+		return rs;
 	};
 	public static String BuscarECargo(String n){
 		String lista = null;
 		return lista;
 	}
 	public boolean insertar_cargo(String estado_cargo){
-		
 		try
 		{
 			Conectadb db = new Conectadb();

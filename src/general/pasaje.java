@@ -112,12 +112,10 @@ public class pasaje {
 	
 	public boolean EliminarPasaje(){
 		Conectadb  db = new Conectadb();
-		
-		
+	
 		try { 
 		db.conectar();
-		String sql = "SELECT * FROM `pasaje`";
-		db.borrar(sql);
+		db.borrar("DELETE * FROM `pasaje`");
 		return true;
 		}catch (Exception er){
 			return false;
