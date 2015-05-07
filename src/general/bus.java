@@ -1,14 +1,12 @@
 package general;
 
 import java.sql.SQLException;
-
-import com.mysql.jdbc.ResultSet;
-
+import java.sql.ResultSet;
 public class bus {
 //ATRIBUTOS
 	String matricula_bus;
 	int numero_bus=0,numero_asiento_bus=0,cap_carga_bus=0;
-	Conectadb cbd= new Conectadb();
+	Conectadb cdb=new Conectadb();
 	
 //PROPIEDADES
 	public String getMatriBus(){
@@ -38,25 +36,42 @@ public class bus {
 //CONSTRUCTOR
 	public bus(){}
 //METODOS
-	public boolean ListarBus(String lbus){
+	public ResultSet ListarBus(String lbus){
+		ResultSet rs = null;
 		try{
-			cbd.conectar();
-			 ResultSet rs = (ResultSet) cbd.consulta("SELECT * FROM bus");
+			cdb.conectar();
+			  rs =cdb.consulta("SELECT * FROM bus");
 			 while(rs.next()){
-				 System.out.println (rs.getInt ("matriula_bus") + " " + rs.getString (" numero_bus "+" num_asiento_bus "+" capacidad_carga_bus "));
+				 System.out.println (rs.getInt ("matricula_bus") + " " + rs.getString (" numero_bus "+" num_asiento_bus "+" capacidad_carga_bus "));
 			 }
-		 return true;
+			 return rs;
 		}catch(SQLException ex){
-			return false;
+			 return rs;
 		}
+	}
+	public ResultSet BuscarBus(String mbus){
+		ResultSet rs= null;
+		try{
+			cdb.conectar();
+			rs = cdb.consulta("SELECT * FROM bus WHERE matricula_bus="+mbus+"");
+			return rs;
+		}catch(SQLException ex){
+			return rs;
+		}
+	 
 	};
-	public static String BuscarBus(String tip){
-		String lista = null;
-		return lista;
-	};
-	public static void CrearBus(){
-		
-	};
+	public boolean CrearBus(String matricula,int numeroB,int asientoB,int capacidadC,String tb){
+		String ConsultaSQL ="INSERT INTO bus (matricula_bus, numero_bus, num_asiento_bus, capacidad_carga_bus, tipo_bus_idtipo_bus)"
+							+" VALUES ('"+matricula+ "','"+numeroB+"',"+"'"+asientoB+"',"+"'"+capacidadC+"',"+"'"+tb+"')";
+		System.out.println(ConsultaSQL);
+		try{
+			cdb.conectar();
+			cdb.insertar(ConsultaSQL);
+			return true;
+		}catch(SQLException ex){
+		return false;}
+	}
+
 	public static void EliminarBus(){
 	};
 	public static void EditarBus(){
