@@ -36,7 +36,7 @@ public class bus {
 //CONSTRUCTOR
 	public bus(){}
 //METODOS
-	public ResultSet ListarBus(String lbus){
+	public ResultSet ListarBus(String bb){
 		ResultSet rs = null;
 		try{
 			cdb.conectar();
@@ -54,6 +54,7 @@ public class bus {
 		try{
 			cdb.conectar();
 			rs = cdb.consulta("SELECT * FROM bus WHERE matricula_bus="+mbus+"");
+			System.out.println(" numero_bus "+" num_asiento_bus "+" capacidad_carga_bus ");
 			return rs;
 		}catch(SQLException ex){
 			return rs;
