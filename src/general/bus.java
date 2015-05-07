@@ -73,6 +73,7 @@ public class bus {
 	}
 
 	public static void EliminarBus(){
+		
 	};
 	public static void EditarBus(){
 	};
