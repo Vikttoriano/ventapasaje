@@ -1,16 +1,33 @@
 package general;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.sql.ResultSet;
+
 
 public class cargo {
 	
 	tarifario t = new tarifario();
 	
+	servicio s = new servicio();
+	
+	cliente c = new cliente();
+	
+	boleta b = new boleta();
+	
+	estado_cargo ec = new estado_cargo();
+	
 	private int id_cargo;
 	
-	private float tarifa = t.calcvalor(v, p, d);
+	private int id_estado_cargo;
+	
+	private int id_servicio;
+	
+	private String rut_cliente;
+	
+	private int id_boleta;
+	
+	private double tarifa = t.calcvalor(t.getValor(), t.getPeso(), t.getDistancia());
+	
+	
 	
 	public int getId_cargo(){
 		return id_cargo;
@@ -23,28 +40,46 @@ public class cargo {
 	public cargo(){
 		
 	}
+	/*listar*/
+	public ResultSet listarCargo (){
+		Conectadb db = new Conectadb();
+		ResultSet rs= null;
+		try{
+			db.conectar();
+				rs = db.consulta("SELECT * FROM `cargo`");
+		}catch (Exception e1)
+		{
+			
+		}
+		return rs;	
+	}
 	
-	public HashMap<String, String> listacargo =new HashMap<String, String>();
-	
-	
-	
-	public void mostrarcargo(HashMap<String,String>listaEquipo){
-		String nombre;
-		Iterator<String> listado=listacargo.keySet().iterator();
-		System.out.println("Lista Cargo");
-		while(listado.hasNext()){
-			nombre=listado.next();
-			System.out.println("Cargo: "+ nombre );	
+	/*eliminar*/
+	public boolean eliminarCargo(){
+		Conectadb db = new Conectadb();
+		try{
+			db.conectar();
+			db.borrar("DELETE * FROM `cargo`");
+			return true;
+		}
+		catch (Exception err){
+			return false;
 		}
 	}
 	
-	public void EliminarEquipo(String listado, Map<String, String> listaEquipo){
-		if(listacargo.containsKey(listado)){
-			listacargo.remove(listado);
+	/*buscar*/
+	public boolean BuscarCargo(int idcargo){
+		Conectadb db = new Conectadb();
+		try{
+			db.conectar();
+			db.consulta("SELECT * FROM `cargo`WHERE idcargo=" + idcargo+" ");
+			return true;
 		}
-		else{
-			System.out.println("Error, Cargo no esta registrado");
+		catch (Exception err){
+			return false;
 		}
 	}
+	
+	
 
 }

@@ -37,9 +37,9 @@ public class tarifario {
 	
 	/*metodo*/
 	
-	public float calcvalor(int v, float p, int d){
+	public float calcvalor(int v, double e, int d){
 		float total = 0;
-		total = (v*p)*d;
+		total = (float) ((v*e)*d);
 		return total;
 	}
 
