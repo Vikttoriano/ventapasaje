@@ -114,15 +114,15 @@ public class pasaje {
 		Conectadb  db = new Conectadb();
 		
 		
-		try {
+		try { 
 		db.conectar();
 		String sql = "SELECT * FROM `pasaje`";
 		db.borrar(sql);
 		return true;
 		}catch (Exception er){
-			
+			return false;
 		}
-		return false;
+		
 	}
 	
 	
